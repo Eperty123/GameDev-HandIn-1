@@ -12,7 +12,7 @@ public class MovementScriptCD : MonoBehaviour
     public float JumpStrength = 5f;
     public float MovementSpeed = 10f;
     public float gravityScale = 1.0f;
-    public static float globalGravity = -9.81f;
+    public static float globalGravity = -9.81f; // Unity's default gravity value. See Project Settings -> Physics -> Gravity.
     public Rigidbody Rigidbody;
 
     Vector3 movementVector;
@@ -41,6 +41,7 @@ public class MovementScriptCD : MonoBehaviour
 
     private void FixedUpdate()
     {
+        // Physics based stuff needs to be in FixedUpdate().
         HandleGravity();
     }
 
@@ -63,6 +64,9 @@ public class MovementScriptCD : MonoBehaviour
 
     void HandleGravity()
     {
+        // Handle gravity manually. We will add constant force of 
+        // the global gravity along with the gravity scale to simulate it.
+        // Unity's gravity value can be found under Project Settings -> Physics -> Gravity.
         gravityVector = globalGravity * gravityScale * Vector3.up;
         Rigidbody.AddForce(gravityVector, ForceMode.Acceleration);
     }
