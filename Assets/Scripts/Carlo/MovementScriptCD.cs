@@ -11,15 +11,19 @@ public class MovementScriptCD : MonoBehaviour
     public bool AllowJump = true;
     public float JumpStrength = 5f;
     public float MovementSpeed = 10f;
+    public float RotationSpeed = 75f;
+    public float AnimationDampTime = .1f;
     public float gravityScale = 1.0f;
     public static float globalGravity = -9.81f; // Unity's default gravity value. See Project Settings -> Physics -> Gravity.
     public Rigidbody Rigidbody;
 
     Vector3 movementVector;
     Vector3 gravityVector;
+    Animator animator;
 
     private void Start()
     {
+        animator = GetComponent<Animator>();
         Rigidbody = GetComponent<Rigidbody>();
         Setup();
     }
@@ -35,6 +39,7 @@ public class MovementScriptCD : MonoBehaviour
 
     private void Update()
     {
+        HandleAnimation();
         HandleMovement();
         HandleJump();
     }
@@ -45,6 +50,15 @@ public class MovementScriptCD : MonoBehaviour
         HandleGravity();
     }
 
+    void HandleAnimation()
+    {
+        if (animator != null)
+        {
+            animator.SetFloat("Forward", movementVector.z, AnimationDampTime, Time.deltaTime);
+            animator.SetFloat("Sideward", movementVector.x, AnimationDampTime, Time.deltaTime);
+        }
+    }
+
     void HandleMovement()
     {
         // Y
@@ -53,7 +67,12 @@ public class MovementScriptCD : MonoBehaviour
         float vertical = Input.GetAxis("Vertical");
 
         movementVector = new Vector3(horizontal, 0, vertical) * MovementSpeed;
+        movementVector = transform.TransformDirection(movementVector);
+
         Rigidbody.velocity = movementVector;
+        transform.Rotate(0, horizontal * RotationSpeed, 0);
+
+        // TODO: Fix forward + backward inputs reversed when moving.
     }
 
     void HandleJump()
