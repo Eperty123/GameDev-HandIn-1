@@ -278,7 +278,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 5dca04bf01f444545ab1574d9b5f3e48, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
@@ -332,8 +332,9 @@ MonoBehaviour:
   MovementSpeed: 10
   RotationSpeed: 5
   AnimationDampTime: 0.1
-  gravityScale: 1
+  GravityScale: 1
   Rigidbody: {fileID: 0}
+  Camera: {fileID: 0}
 --- !u!114 &3192076092493690397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2070,7 +2071,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5345552770772476426
 Transform:
   m_ObjectHideFlags: 0
