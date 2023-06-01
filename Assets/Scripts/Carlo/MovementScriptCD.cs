@@ -12,7 +12,7 @@ public class MovementScriptCD : MonoBehaviour
     public bool AllowJump = true;
     public float JumpStrength = 5f;
     public float MovementSpeed = 10f;
-    public float RotationSpeed = 10f;
+    public float RotationDampingSpeed = .1f;
     public float AnimationDampTime = .1f;
     public float GravityScale = 1.0f;
     public static string MainCameraTag = "MainCamera";
@@ -20,11 +20,13 @@ public class MovementScriptCD : MonoBehaviour
 
     [Header("Player Components")]
     public Rigidbody Rigidbody;
-    public ThirdPersonCameraCD Camera;
+    public Transform Camera;
 
     Vector3 movementVector;
     Vector3 gravityVector;
+    float turnSmoothVector;
     Animator animator;
+
 
     private void Start()
     {
@@ -41,7 +43,7 @@ public class MovementScriptCD : MonoBehaviour
             Rigidbody.useGravity = false;
         }
 
-        Camera = GameObject.FindGameObjectWithTag(MainCameraTag).GetComponent<ThirdPersonCameraCD>();
+        Camera = GameObject.FindGameObjectWithTag(MainCameraTag).transform;
     }
 
     private void Update()
@@ -62,8 +64,8 @@ public class MovementScriptCD : MonoBehaviour
     {
         if (animator != null)
         {
-            animator.SetFloat("Forward", movementVector.z, AnimationDampTime, Time.deltaTime);
-            animator.SetFloat("Sideward", movementVector.x, AnimationDampTime, Time.deltaTime);
+            animator.SetFloat("Forward", movementVector.magnitude, AnimationDampTime, Time.deltaTime);
+            animator.SetFloat("Sideward", Mathf.Atan2(movementVector.x, movementVector.z), AnimationDampTime, Time.deltaTime);
         }
     }
 
@@ -74,22 +76,21 @@ public class MovementScriptCD : MonoBehaviour
         // X
         float vertical = Input.GetAxis("Vertical");
 
-        movementVector = new Vector3(horizontal, 0, vertical) * MovementSpeed;
-        //movementVector = transform.TransformDirection(movementVector);
-
-        // limit the input
-        if (movementVector.magnitude > 1f)
-            movementVector.Normalize();
+        movementVector = new Vector3(horizontal, 0, vertical).normalized;
     }
 
     void HandleMovement()
     {
+        if (movementVector.magnitude > .1f)
+        {
+            float targetAngle = Mathf.Atan2(movementVector.x, movementVector.z) * Mathf.Rad2Deg + Camera.eulerAngles.y;
+            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVector, RotationDampingSpeed);
 
-        Rigidbody.velocity = movementVector;
-        Rotate(movementVector, RotationSpeed);
-        //RotateToDirection(Camera.transform.forward, RotationSpeed);
-
-        // TODO: Fix rotation orientation for movement.
+            var rotation = Quaternion.Euler(0f, angle, 0f);
+            var moveDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+            Rigidbody.rotation = rotation;
+            Rigidbody.velocity = moveDirection * MovementSpeed;
+        }
     }
 
     void HandleJump()
@@ -105,28 +106,5 @@ public class MovementScriptCD : MonoBehaviour
         // Unity's gravity value can be found under Project Settings -> Physics -> Gravity.
         gravityVector = GlobalGravity * GravityScale * Vector3.up;
         Rigidbody.AddForce(gravityVector, ForceMode.Acceleration);
-    }
-
-    public virtual void RotateToDirection(Vector3 direction, float rotationSpeed)
-    {
-        direction.y = 0f;
-        Vector3 desiredForward = Vector3.RotateTowards(transform.forward, direction.normalized, rotationSpeed * Time.deltaTime, .1f);
-        Quaternion _newRotation = Quaternion.LookRotation(desiredForward);
-        transform.rotation = _newRotation;
-    }
-
-    public void Rotate(Vector3 direction, float angularSpeed, bool onlyLateral = true)
-    {
-        if (onlyLateral)
-            direction = Vector3.ProjectOnPlane(direction, transform.up);
-
-        if (direction.sqrMagnitude < 0.0001f)
-            return;
-
-        var targetRotation = Quaternion.LookRotation(direction, transform.up);
-        var newRotation = Quaternion.Slerp(Rigidbody.rotation, targetRotation,
-            angularSpeed * Time.deltaTime);
-
-        Rigidbody.MoveRotation(newRotation);
     }
 }
