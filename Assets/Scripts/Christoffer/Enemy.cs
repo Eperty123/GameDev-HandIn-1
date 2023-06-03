@@ -26,7 +26,7 @@ public class Enemy : MonoBehaviour
     private void Awake()
     {
         //Player name
-        player = GameObject.Find("CapsuleMovement").transform;
+        player = GameObject.Find("PT_Male_Modular_Free_Pack").transform;
         agent = GetComponent<NavMeshAgent>();
     }
 
@@ -78,9 +78,7 @@ public class Enemy : MonoBehaviour
 
         if (!alreadyAttacked)
         {
-            Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
-            rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
-            rb.AddForce(transform.up * 8f, ForceMode.Impulse);
+            
 
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
