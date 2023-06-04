@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 537325457001948632, guid: a5e54cc0fed8db64f86cb27c41f2041d, type: 3}
       propertyPath: m_Name
-      value: PT_Male_Modular_Free_Pack
+      value: PT_Male_Modular_Free_Pack Variant
       objectReference: {fileID: 0}
     - target: {fileID: 882465853223763810, guid: a5e54cc0fed8db64f86cb27c41f2041d, type: 3}
       propertyPath: m_RootOrder
@@ -60,6 +60,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 1478582623453069260, guid: a5e54cc0fed8db64f86cb27c41f2041d, type: 3}
+      propertyPath: JumpStrength
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1478582623453069260, guid: a5e54cc0fed8db64f86cb27c41f2041d, type: 3}
       propertyPath: MovementSpeed
       value: 5
       objectReference: {fileID: 0}
@@ -73,3 +77,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a5e54cc0fed8db64f86cb27c41f2041d, type: 3}
+--- !u!1 &7362996407123821849 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 537325457001948632, guid: a5e54cc0fed8db64f86cb27c41f2041d, type: 3}
+  m_PrefabInstance: {fileID: 7015034340228194497}
+  m_PrefabAsset: {fileID: 0}
+--- !u!143 &5330788649731274383
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7362996407123821849}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 2
+  m_Radius: 0.2
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0.85, z: 0}
