@@ -108,7 +108,7 @@ MonoBehaviour:
   ySpeed: 200
   yMinLimit: -40
   yMaxLimit: 80
-  zoomRate: 40
+  zoomRate: 100
   rotationDampening: 3
   zoomDampening: 5
   collisionLayers:
