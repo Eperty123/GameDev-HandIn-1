@@ -8,6 +8,6 @@ public class Start : MonoBehaviour
     public void StartGame()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("MovementSceneC", LoadSceneMode.Single);
+        SceneManager.LoadScene("TreasureScene-1", LoadSceneMode.Single);
     }
 }
