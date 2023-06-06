@@ -9,6 +9,10 @@ public class PauseMenu : MonoBehaviour
 
     public GameObject pauseMenuUI;
 
+    public GameObject ThirdPersonCameraCD;
+
+    public GameObject Camera;
+
     // Update is called once per frame
     void Update()
     {
@@ -27,6 +31,8 @@ public class PauseMenu : MonoBehaviour
     public void Resume()
     {
         pauseMenuUI.SetActive(false);
+        ThirdPersonCameraCD.SetActive(true);
+        Camera.SetActive(false);
         Time.timeScale = 1f;
         GameIsPaused = false;
     }
@@ -34,13 +40,17 @@ public class PauseMenu : MonoBehaviour
     void Pause()
     {
         pauseMenuUI.SetActive(true);
+        ThirdPersonCameraCD.SetActive(false);
+        Camera.SetActive(true);
         Time.timeScale = 0f;
         GameIsPaused = true;
     }
 
     public void Home() {
-        Time.timeScale = 1f;
+        ThirdPersonCameraCD.SetActive(false);
+        Camera.SetActive(true);
+        Time.timeScale = 0f;
         GameIsPaused = false;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+        SceneManager.LoadScene("Start", LoadSceneMode.Single);
     }
 }

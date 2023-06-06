@@ -49,8 +49,10 @@ namespace Assets.Scripts.Carlo
             correctedDistance = distance;
 
             // Make the rigid body not change rotation
-            if (this.gameObject.GetComponent<Rigidbody>())
-                this.gameObject.GetComponent<Rigidbody>().freezeRotation = true;
+            //if (gameObject.GetComponent<Rigidbody>())
+            //    gameObject.GetComponent<Rigidbody>().freezeRotation = true;
+
+            Cursor.lockState = CursorLockMode.Locked;
         }
 
         /**
@@ -69,9 +71,11 @@ namespace Assets.Scripts.Carlo
             {
                 if (Input.GetMouseButton(0) || Input.GetMouseButton(1))
                 {
+                    Cursor.lockState = CursorLockMode.Locked;
                     xDeg += Input.GetAxis("Mouse X") * xSpeed * 0.02f;
                     yDeg -= Input.GetAxis("Mouse Y") * ySpeed * 0.02f;
                 }
+                else Cursor.lockState = CursorLockMode.None;
 
                 // otherwise, ease behind the target if any of the directional keys are pressed
                 //else if (Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0)
