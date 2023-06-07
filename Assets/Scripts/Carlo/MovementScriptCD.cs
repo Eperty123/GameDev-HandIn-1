@@ -61,7 +61,7 @@ public class MovementScriptCD : MonoBehaviour
         if (animator != null)
         {
             animator.SetFloat("Forward", movementVector.magnitude, AnimationDampTime, Time.deltaTime);
-            animator.SetFloat("Sideward", Mathf.Atan2(movementVector.x, movementVector.z), AnimationDampTime, Time.deltaTime);
+            //animator.SetFloat("Sideward", Mathf.Atan2(movementVector.x, movementVector.z), AnimationDampTime, Time.deltaTime);
         }
     }
 
