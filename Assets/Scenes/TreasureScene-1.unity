@@ -2839,7 +2839,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Coins collected: 0/?'
+  m_text: 'Treasures collected: 0/?'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2a000e071a8849c43af60c86cd55167c, type: 2}
   m_sharedMaterial: {fileID: 3190570249423286140, guid: 2a000e071a8849c43af60c86cd55167c, type: 2}
@@ -3145,25 +3145,17 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 1, y: 25, z: 0}
---- !u!1 &1904889978 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7285919686616783782, guid: 1c8de84f2df7d2c4aaf4be306e3c6713, type: 3}
+--- !u!114 &1904889985 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1904889985, guid: 1c8de84f2df7d2c4aaf4be306e3c6713, type: 3}
   m_PrefabInstance: {fileID: 8355800450331305566}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1904889985
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1904889978}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 369d0a3b2cfbb274cbc133aa7de3dc73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
-  healthBar: {fileID: 733099892}
 --- !u!1 &2067403005
 GameObject:
   m_ObjectHideFlags: 0
@@ -3267,34 +3259,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1904889985, guid: 1c8de84f2df7d2c4aaf4be306e3c6713, type: 3}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 733099892}
     - target: {fileID: 3864457839018757187, guid: 1c8de84f2df7d2c4aaf4be306e3c6713, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 4477611319158892971, guid: 1c8de84f2df7d2c4aaf4be306e3c6713, type: 3}
-      propertyPath: m_CollisionDetection
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5388719041654089776, guid: 1c8de84f2df7d2c4aaf4be306e3c6713, type: 3}
-      propertyPath: m_Radius
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5388719041654089776, guid: 1c8de84f2df7d2c4aaf4be306e3c6713, type: 3}
-      propertyPath: m_Center.y
-      value: 0.85
       objectReference: {fileID: 0}
     - target: {fileID: 5630827439495825507, guid: 1c8de84f2df7d2c4aaf4be306e3c6713, type: 3}
       propertyPath: coinsText
       value: 
       objectReference: {fileID: 1828623948}
-    - target: {fileID: 5630827439495825507, guid: 1c8de84f2df7d2c4aaf4be306e3c6713, type: 3}
-      propertyPath: coinsRequired
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 7285919686616783782, guid: 1c8de84f2df7d2c4aaf4be306e3c6713, type: 3}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
     - target: {fileID: 7599133626656026706, guid: 1c8de84f2df7d2c4aaf4be306e3c6713, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -3337,14 +3313,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7599133626656026706, guid: 1c8de84f2df7d2c4aaf4be306e3c6713, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7950852214256419100, guid: 1c8de84f2df7d2c4aaf4be306e3c6713, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7950852214256419100, guid: 1c8de84f2df7d2c4aaf4be306e3c6713, type: 3}
-      propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

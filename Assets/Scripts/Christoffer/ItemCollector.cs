@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class ItemCollector : MonoBehaviour
 {
@@ -11,6 +12,12 @@ public class ItemCollector : MonoBehaviour
     public int coinsRequired;
 
     [SerializeField] TextMeshProUGUI coinsText;
+
+    private void Update()
+    {
+        if(coins >= coinsRequired)
+            SceneManager.LoadScene("GameWin", LoadSceneMode.Single);
+    }
 
     private void OnTriggerEnter(Collider other) 
     {
