@@ -13,11 +13,33 @@ public class TreasureManagerCD : SingletonCD<TreasureManagerCD>
 
     int treasuresCollected;
     [SerializeField] GameObject treasureScoreUI;
+    Scene activeScene;
+
+    public override void Awake()
+    {
+        base.Awake();
+        SceneManager.activeSceneChanged += SceneManager_activeSceneChanged;
+    }
+
+    private void SceneManager_activeSceneChanged(Scene arg0, Scene arg1)
+    {
+        activeScene = arg1;
+        CheckUI();
+        ResetTreasureCollected();
+    }
+
+    private void CheckUI()
+    {
+        if (treasureScoreUI == null && TreasureScoreUIPrefab != null)
+        {
+            treasureScoreUI = Instantiate(TreasureScoreUIPrefab);
+            Text = treasureScoreUI.GetComponentInChildren<TextMeshProUGUI>();
+        }
+    }
 
     private void Start()
     {
-        treasureScoreUI = Instantiate(TreasureScoreUIPrefab);
-        Text = treasureScoreUI.GetComponentInChildren<TextMeshProUGUI>();
+        CheckUI();
         //SetText(TreasureCollectedString);
     }
 
@@ -46,10 +68,15 @@ public class TreasureManagerCD : SingletonCD<TreasureManagerCD>
         MaxTreasures = max;
     }
 
-    public void SetCurrentTreasureCollected(int amount)
+    public void AddTreasureCollected(int amount)
     {
         treasuresCollected += amount;
         CheckTreasuresCollected();
+    }
+
+    public void ResetTreasureCollected()
+    {
+        treasuresCollected = 0;
     }
 
     public int GetCurrentCollectedTreasures()

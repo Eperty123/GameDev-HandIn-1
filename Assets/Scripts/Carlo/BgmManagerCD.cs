@@ -26,6 +26,7 @@ public class BgmManagerCD : SingletonCD<BgmManagerCD>
     public override void Awake()
     {
         base.Awake();
+        SceneManager.activeSceneChanged += SceneManager_activeSceneChanged;
 
         TemplateSource = Instantiate(TemplateSourcePrefab);
 
@@ -36,7 +37,6 @@ public class BgmManagerCD : SingletonCD<BgmManagerCD>
         // applied settings from the template source!
         //IntroloopPlayer.Instance.Play(audioToPlay);
         PlayNormalBgm();
-        SceneManager.activeSceneChanged += SceneManager_activeSceneChanged;
     }
 
     private void SceneManager_activeSceneChanged(Scene arg0, Scene arg1)

@@ -14,7 +14,7 @@ public class ItemCollector : MonoBehaviour
         if (other.gameObject.CompareTag("Coin"))
         {
             Destroy(other.gameObject);
-            treasureManager.SetCurrentTreasureCollected(1);
+            treasureManager.AddTreasureCollected(1);
             treasureManager!.SetScore(treasureManager.GetCurrentCollectedTreasures(), treasureManager.MaxTreasures);
         }
     }
