@@ -44,6 +44,7 @@ public class PauseMenu : MonoBehaviour
         Camera.SetActive(true);
         Time.timeScale = 0f;
         GameIsPaused = true;
+        Cursor.lockState = CursorLockMode.None;
     }
 
     public void Home() {
