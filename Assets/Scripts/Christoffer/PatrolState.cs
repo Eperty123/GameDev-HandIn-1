@@ -23,6 +23,7 @@ public class PatrolState : StateMachineBehaviour
         agent.SetDestination(waypoints[Random.Range(0, waypoints.Count)].position);
 
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        BgmManagerCD.Instance.PlayNormalBgm();
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

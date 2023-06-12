@@ -116,6 +116,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  HealthUIPrefab: {fileID: 8695065831862352952, guid: 9d836c074b84fa542a6b20e75aa93d17, type: 3}
   healthBar: {fileID: 0}
 --- !u!4 &7950852214256419100 stripped
 Transform:

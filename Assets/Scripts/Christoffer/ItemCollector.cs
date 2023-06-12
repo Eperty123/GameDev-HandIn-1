@@ -1,31 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
-using UnityEngine.SceneManagement;
 
 public class ItemCollector : MonoBehaviour
 {
-    int coins = 0;
-    
-    public int coinsRequired;
+    TreasureManagerCD treasureManager;
 
-    [SerializeField] TextMeshProUGUI coinsText;
-
-    private void Update()
+    private void Start()
     {
-        if(coins >= coinsRequired)
-            SceneManager.LoadScene("GameWin", LoadSceneMode.Single);
+        treasureManager = TreasureManagerCD.Instance;
     }
 
-    private void OnTriggerEnter(Collider other) 
+    private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Coin")) 
+        if (other.gameObject.CompareTag("Coin"))
         {
             Destroy(other.gameObject);
-            coins++;
-            coinsText.text = "Coins collected: " + coins + "/" + coinsRequired;
+            treasureManager.SetCurrentTreasureCollected(1);
+            treasureManager!.SetScore(treasureManager.GetCurrentCollectedTreasures(), treasureManager.MaxTreasures);
         }
-   }
+    }
 }
