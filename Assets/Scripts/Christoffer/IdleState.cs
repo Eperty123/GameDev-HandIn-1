@@ -12,6 +12,7 @@ public class IdleState : StateMachineBehaviour
     {
         timer = 0;
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        BgmManagerCD.Instance.PlayNormalBgm();
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

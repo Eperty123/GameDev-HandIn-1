@@ -23,7 +23,6 @@ public class MovementScriptCD : MonoBehaviour
     public Transform Camera;
 
     Vector3 movementVector;
-    [SerializeField]
     Vector3 gravityVector;
     float turnSmoothVector;
     Animator animator;
